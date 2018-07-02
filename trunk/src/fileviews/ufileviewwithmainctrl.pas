@@ -989,6 +989,11 @@ procedure TFileViewWithMainCtrl.MainControlUTF8KeyPress(Sender: TObject; var UTF
 begin
   if IsLoadingFileList then Exit;
 
+  // Lilx
+  // create '@' char as a quick open hot histort key
+  if UTF8Key = '@' then
+    frmMain.Commands.cm_DirHotList([])
+  else
   // check if ShiftState is equal to quick search / filter modes
   if quickSearch.CheckSearchOrFilter(UTF8Key) then
     Exit;

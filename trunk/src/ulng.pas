@@ -253,6 +253,9 @@ resourcestring
   rsMsgSpecialDirAddNonActi = 'Add path from inactive frame';
   rsMsgSpecialDirBrowsSel = 'Browse and use selected path';
 
+  // Lilx
+  rsMsgHistoryDir = 'History Dirs';
+
   rsMsgSpecialDir = 'Special Dirs';
   rsMsgSpecialDirGotoDC = 'Go to Double Commander special path...';
   rsMsgSpecialDirGotoTC = 'Go to Windows special folder (TC)...';
