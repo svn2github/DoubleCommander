@@ -3044,6 +3044,13 @@ begin
       isSHIFTDown:=((GetKeyState(VK_SHIFT) AND $80) <> 0);
       if not isSHIFTDown then //if SHIFT is NOT down, it's to change directory
       begin
+        if ((Index >= 3000) AND (Index < 3999)) then
+          begin
+            aPath:=glsDirHistory[Index-3000];
+            ChooseFileSource(ActiveFrame, aPath);
+          end
+        else
+        begin
         case gDirectoryHotlist.HotDir[Index].Dispatcher of
           hd_CHANGEPATH:
             begin
@@ -3107,6 +3114,7 @@ begin
                 Commands.Commands.ExecuteCommand(PossibleCommande, SplitString(PossibleParam,' '));
             end;
         end; //case gDirectoryHotlist.HotDir[Index].Dispatcher of
+       end;
       end
       else
       begin //if SHIFT IS down, it's to EDIT current selected entry from the Directory Hotlist that the current selected popup menu selection is pointing.
