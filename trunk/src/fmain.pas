@@ -3987,6 +3987,23 @@ begin
   if FileView.NotebookPage is TFileViewPage then
   begin
     Page := FileView.NotebookPage as TFileViewPage;
+    ANoteBook := Page.Notebook;
+
+    if tb_reusing_tab_when_possible in gDirTabOptions then
+    begin
+      for i := 0 to ANotebook.PageCount - 1 do
+      begin
+        NewPage := ANotebook.Page[i];
+        PageAlreadyExists := Assigned(NewPage.FileView) and
+          mbCompareFileNames(NewPage.FileView.CurrentPath, NewPath);
+        if PageAlreadyExists then
+        begin
+          NewPage.MakeActive;
+          Result:= False;
+          Exit;
+        end;
+      end;
+    end;
 
     tlsLockStateToEvaluate:=Page.LockState;
     if tlsLockStateToEvaluate=tlsPathLocked then
@@ -4003,26 +4020,9 @@ begin
 
           if Assigned(NewFileSource) then
           begin
-            ANoteBook := Page.Notebook;
-
-            if tb_reusing_tab_when_possible in gDirTabOptions then
-            begin
-              for i := 0 to ANotebook.PageCount - 1 do
-              begin
-                NewPage := ANotebook.Page[i];
-                PageAlreadyExists := Assigned(NewPage.FileView) and
-                  mbCompareFileNames(NewPage.FileView.CurrentPath, NewPath);
-                if PageAlreadyExists then
-                  Break;
-              end;
-            end;
-
-            if not PageAlreadyExists then
-            begin
-              // Open in a new page, cloned view.
-              NewPage := ANotebook.NewPage(Page.FileView);
-              NewPage.FileView.AddFileSource(NewFileSource, NewPath);
-            end;
+            // Open in a new page, cloned view.
+            NewPage := ANotebook.NewPage(Page.FileView);
+            NewPage.FileView.AddFileSource(NewFileSource, NewPath);
             NewPage.MakeActive;
           end;
         end;
