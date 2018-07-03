@@ -29,7 +29,7 @@ GitHub clone of SVN repo http://svn.code.sf.net/p/doublecmd/code/ (cloned by htt
 - 字体，**建议都选择 “Courier New” 12 号字体**
 - 颜色-文件面板，标记颜色看看要不要调整，我设置为红色。
 - 文件视图，建议勾上“显示隐藏/系统文件”，“双击文件视图的空白区域，启用变更到父文件夹”
-  - 自定义列，我保留了三个列，名称、日期、大小，字段内容分别是 [DC().GETFILENAME{}] 、[DC().GETFILETIME{}]、[DC().GETFILESIZE{}] 
+  - 自定义列，**我保留了三个列，名称、日期、大小，字段内容分别是 [DC().GETFILENAME{}] 、[DC().GETFILETIME{}]、[DC().GETFILESIZE{}]** 
 - 布局，不勾上“可用驱动器列表按钮” 、“显示可用空间标签”等。
 - 图标，**图标大小根据屏幕显示分辨率，选择为 20x20 或 16x16**
 
