@@ -991,6 +991,16 @@ begin
       Exit;
     end;
 
+    // Lilx: add 'copy full path' to context menu
+    if Pos('{!COPYFULLPATH}', sCmd) > 0 then
+    begin
+      // test only
+      // msgOK('copy full path');
+      frmMain.commands.cm_CopyFullNamesToClip([]);
+      Result := True;
+      Exit;
+    end;
+
     //9. If our end-job is to EDIT a file via internal editor, let's do it.
     if Pos('{!DC-EDITOR}', sCmd) > 0 then
     begin

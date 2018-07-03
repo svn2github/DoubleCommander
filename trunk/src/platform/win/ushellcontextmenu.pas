@@ -349,6 +349,12 @@ begin
     // 1o) View (always)
     // 2o) Edit (always)
     // 3o) Custom action different then Open, View or Edit (if any, add also a separator just before)
+
+    // Lilx£ºadd 'copy full name path' to context menu
+    I := paramExtActionList.Add(TExtActionCommand.Create(rsMenuCopyFullPath, '{!COPYFULLPATH}', QuoteStr(aFile.FullPath), ''));
+    LocalInsertMenuItemExternal(I);
+    LocalInsertMenuSeparator;
+
     I := paramExtActionList.Add(TExtActionCommand.Create(rsMnuView, '{!VIEWER}', QuoteStr(aFile.FullPath), ''));
     LocalInsertMenuItemExternal(I);
 
@@ -362,7 +368,8 @@ begin
       for I := 0 to (pred(paramExtActionList.Count) - Always_Legacy_Action_Count) do
       begin
         sAct := paramExtActionList.ExtActionCommand[I].ActionName;
-        if (CompareText('OPEN', sAct) <> 0) and (CompareText('VIEW', sAct) <> 0) and (CompareText('EDIT', sAct) <> 0) then
+        
+        if (CompareText('OPEN', sAct) <> 0) and (CompareText('VIEW', sAct) <> 0) and (CompareText('EDIT', sAct) <> 0) and (pos('Copy Filename', sAct) = 0) then
         begin
           if not bSeparatorAlreadyInserted then
           begin
