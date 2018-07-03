@@ -369,7 +369,7 @@ begin
       begin
         sAct := paramExtActionList.ExtActionCommand[I].ActionName;
         
-        if (CompareText('OPEN', sAct) <> 0) and (CompareText('VIEW', sAct) <> 0) and (CompareText('EDIT', sAct) <> 0) and (pos('Copy Filename', sAct) = 0) then
+        if (CompareText('OPEN', sAct) <> 0) and (CompareText('VIEW', sAct) <> 0) and (CompareText('EDIT', sAct) <> 0) and (CompareText('COPY', sAct) >= 0) then
         begin
           if not bSeparatorAlreadyInserted then
           begin
