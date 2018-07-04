@@ -544,6 +544,10 @@ begin
     // Lilx: add 'copy full name path' to context menu
     I := ContextMenuActionList.Add(TExtActionCommand.Create(rsMenuCopyFullPath, '{!COPYFULLPATH}', QuoteStr(aFile.FullPath), ''));
     LocalInsertMenuItem(ContextMenuActionList.ExtActionCommand[I].ActionName, I);    
+    
+    I := ContextMenuActionList.Add(TExtActionCommand.Create(rsMenuSearch, '{!SEARCH}', QuoteStr(aFile.FullPath), ''));
+    LocalInsertMenuItem(ContextMenuActionList.ExtActionCommand[I].ActionName, I);    
+     
     LocalInsertMenuSeparator;
 
     I := ContextMenuActionList.Add(TExtActionCommand.Create(rsMnuView, '{!VIEWER}', QuoteStr(aFile.FullPath), ''));

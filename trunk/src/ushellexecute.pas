@@ -1001,6 +1001,14 @@ begin
       Exit;
     end;
 
+    if Pos('{!SEARCH}', sCmd) > 0 then
+    begin
+      // test only
+      frmMain.commands.cm_Search([sParams]);
+      Result := True;
+      Exit;
+    end;
+
     //9. If our end-job is to EDIT a file via internal editor, let's do it.
     if Pos('{!DC-EDITOR}', sCmd) > 0 then
     begin

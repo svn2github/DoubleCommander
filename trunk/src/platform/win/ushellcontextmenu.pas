@@ -350,9 +350,13 @@ begin
     // 2o) Edit (always)
     // 3o) Custom action different then Open, View or Edit (if any, add also a separator just before)
 
-    // Lilx£ºadd 'copy full name path' to context menu
+    // Lilx:add 'copy full name path' to context menu
     I := paramExtActionList.Add(TExtActionCommand.Create(rsMenuCopyFullPath, '{!COPYFULLPATH}', QuoteStr(aFile.FullPath), ''));
     LocalInsertMenuItemExternal(I);
+
+    I := paramExtActionList.Add(TExtActionCommand.Create(rsMenuSearch, '{!SEARCH}', QuoteStr(aFile.FullPath), ''));
+    LocalInsertMenuItemExternal(I);   
+
     LocalInsertMenuSeparator;
 
     I := paramExtActionList.Add(TExtActionCommand.Create(rsMnuView, '{!VIEWER}', QuoteStr(aFile.FullPath), ''));

@@ -302,6 +302,7 @@ resourcestring
   rsMnuView = 'View';
   rsMnuEdit = 'Edit';
   rsMenuCopyFullPath = 'Copy Filename(s) with Full &Path';    // Lilx
+  rsMenuSearch = 'Search';
   rsMnuOpenWith = 'Open with';
   rsMnuOpenWithOther = 'Other...';
   rsMnuMount = 'Mount';
