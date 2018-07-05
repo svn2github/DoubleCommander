@@ -467,6 +467,8 @@ var
   I: integer;
   AfrmFindDlgInstance: TfrmFindDlg;
   bFirstFindDlg: boolean;
+
+  mypath: string;
 begin
   if not Assigned(FileView) then
     raise Exception.Create('ShowFindDlg: FileView=nil');
@@ -493,7 +495,12 @@ begin
       LoadHistory;
       ClearFilter;
       // SetWindowCaption(wcs_NewSearch);
-      cmbFindPathStart.Text := FileView.CurrentPath;
+      mypath := TrimQuotes(TemplateName);
+
+      if mbDirectoryExists(mypath) then
+        cmbFindPathStart.Text := mypath
+      else
+        cmbFindPathStart.Text := FileView.CurrentPath;
 
       // Get paths of selected files, if any.
       FSelectedFiles.Clear;
