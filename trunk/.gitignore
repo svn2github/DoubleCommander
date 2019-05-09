@@ -1,0 +1,9 @@
+lib/
+x86_64-win64-win32/
+doublecmd.dbg
+doublecmd.zdli
+*.exe
+*.res
+*.wcx
+*.wdx
+*.wfx

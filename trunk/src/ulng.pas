@@ -285,6 +285,9 @@ resourcestring
   rsMsgSpecialDirAddNonActi = 'Add path from inactive frame';
   rsMsgSpecialDirBrowsSel = 'Browse and use selected path';
 
+  // Lilx
+  rsMsgHistoryDir = 'History Dirs';
+
   rsMsgSpecialDir = 'Special Dirs';
   rsMsgSpecialDirGotoDC = 'Go to Double Commander special path...';
   rsMsgSpecialDirGotoTC = 'Go to Windows special folder (TC)...';
@@ -338,6 +341,8 @@ resourcestring
   rsMnuOpen = 'Open';
   rsMnuView = 'View';
   rsMnuEdit = 'Edit';
+  rsMenuCopyFullPath = 'Copy Filename(s) with Full &Path';    // Lilx
+  rsMenuSearch = 'Search';
   rsMnuOpenWith = 'Open with';
   rsMnuOpenWithOther = 'Other...';
   rsMnuMount = 'Mount';

@@ -3048,6 +3048,13 @@ begin
       isSHIFTDown:=((GetKeyState(VK_SHIFT) AND $80) <> 0);
       if not isSHIFTDown then //if SHIFT is NOT down, it's to change directory
       begin
+        if ((Index >= 3000) AND (Index < 3999)) then
+          begin
+            aPath:=glsDirHistory[Index-3000];
+            ChooseFileSource(ActiveFrame, aPath);
+          end
+        else
+        begin
         case gDirectoryHotlist.HotDir[Index].Dispatcher of
           hd_CHANGEPATH:
             begin
@@ -3111,6 +3118,7 @@ begin
                 Commands.Commands.ExecuteCommand(PossibleCommande, SplitString(PossibleParam,' '));
             end;
         end; //case gDirectoryHotlist.HotDir[Index].Dispatcher of
+       end;
       end
       else
       begin //if SHIFT IS down, it's to EDIT current selected entry from the Directory Hotlist that the current selected popup menu selection is pointing.
@@ -3990,6 +3998,23 @@ begin
   if FileView.NotebookPage is TFileViewPage then
   begin
     Page := FileView.NotebookPage as TFileViewPage;
+    ANoteBook := Page.Notebook;
+
+    if tb_reusing_tab_when_possible in gDirTabOptions then
+    begin
+      for i := 0 to ANotebook.PageCount - 1 do
+      begin
+        NewPage := ANotebook.Page[i];
+        PageAlreadyExists := Assigned(NewPage.FileView) and
+          mbCompareFileNames(NewPage.FileView.CurrentPath, NewPath);
+        if PageAlreadyExists then
+        begin
+          NewPage.MakeActive;
+          Result:= False;
+          Exit;
+        end;
+      end;
+    end;
 
     tlsLockStateToEvaluate:=Page.LockState;
     if tlsLockStateToEvaluate=tlsPathLocked then
@@ -4006,26 +4031,9 @@ begin
 
           if Assigned(NewFileSource) then
           begin
-            ANoteBook := Page.Notebook;
-
-            if tb_reusing_tab_when_possible in gDirTabOptions then
-            begin
-              for i := 0 to ANotebook.PageCount - 1 do
-              begin
-                NewPage := ANotebook.Page[i];
-                PageAlreadyExists := Assigned(NewPage.FileView) and
-                  mbCompareFileNames(NewPage.FileView.CurrentPath, NewPath);
-                if PageAlreadyExists then
-                  Break;
-              end;
-            end;
-
-            if not PageAlreadyExists then
-            begin
-              // Open in a new page, cloned view.
-              NewPage := ANotebook.NewPage(Page.FileView);
-              NewPage.FileView.AddFileSource(NewFileSource, NewPath);
-            end;
+            // Open in a new page, cloned view.
+            NewPage := ANotebook.NewPage(Page.FileView);
+            NewPage.FileView.AddFileSource(NewFileSource, NewPath);
             NewPage.MakeActive;
           end;
         end;

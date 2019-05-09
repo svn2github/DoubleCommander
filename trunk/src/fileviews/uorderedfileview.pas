@@ -32,6 +32,7 @@ uses
   fQuickSearch,
   uFileView,
   uFileViewWithPanels,
+  Process,    // Lilx
   uDisplayFile;
 
 const
@@ -508,7 +509,14 @@ begin
 end;
 
 procedure TOrderedFileView.quickSearchExecute(Sender: TObject);
+var s:String;
 begin
+  // Lilx
+  if (pos('#np', quickSearch.edtSearch.Text) >= 1) then
+    begin
+      RunCommand('C:\\Program Files\\Notepad++\\notepad++.exe', [PWideChar(UTF8Decode(GetActiveDisplayFile.FSFile.FullPath))], s);
+      Exit;
+    end;
   Active := True;
   ChooseFile(GetActiveDisplayFile);
 end;
